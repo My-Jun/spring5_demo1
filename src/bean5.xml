@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+   	http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   	http://www.springframework.org/schema/aop
+  	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+   	http://www.springframework.org/schema/tx
+  	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+   	http://www.springframework.org/schema/context     
+   	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- 集合类型属性注入 -->
+	<bean id="stu" class="com.junjay.spring5.collectionbean.Stu">
+		<!-- 数组类型属性注入 -->
+		<property name="sarr">
+			<!-- 数组类型可多内容，用array或list标签，注入多个值 -->
+			<array>
+				<value>数组1</value>
+				<value>数组2</value>
+			</array>
+		</property>
+
+		<!-- List类型属性注入 -->
+		<property name="slist">
+			<!-- List类型可多内容，用list标签，注入多个值 -->
+			<list>
+				<value>list1</value>
+				<value>list2</value>
+			</list>
+		</property>
+
+		<!-- Map类型属性注入 -->
+		<property name="smap">
+			<!-- Map类型可多内容，用entry标签，以key，value注入 -->
+			<map>
+				<entry key="Java" value="java"></entry>
+				<entry key="Spring" value="spring"></entry>
+			</map>
+		</property>
+
+		<!-- Set类型属性注入 -->
+		<property name="set">
+			<!-- Set类型可多内容，用entry标签，以key，value注入 -->
+			<set>
+				<value>set1</value>
+				<value>set2</value>
+			</set>
+		</property>
+
+		<!-- List集合类型，值为对象 类型属性注入 -->
+		<property name="cosList">
+			<list>
+				<ref bean="cos1"></ref>
+				<ref bean="cos2"></ref>
+			</list>
+		</property>
+
+	</bean>
+
+
+	<!-- 创建多个cos对象通过ref注入到stu list对象中 -->
+	<bean id="cos1" class="com.junjay.spring5.collectionbean.Cos">
+		<property name="cname" value="cos1"></property>
+	</bean>
+
+	<bean id="cos2" class="com.junjay.spring5.collectionbean.Cos">
+		<property name="cname" value="cos2"></property>
+	</bean>
+
+
+</beans>

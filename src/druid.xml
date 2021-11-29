@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+
+	xmlns:context="http://www.springframework.org/schema/context"
+
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+   	http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   	http://www.springframework.org/schema/aop
+  	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+   	http://www.springframework.org/schema/tx
+  	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+   	
+   	http://www.springframework.org/schema/context
+   	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+
+   	http://www.springframework.org/schema/util
+   	http://www.springframework.org/schema/util/spring-util.xsd
+   	">
+
+	<!-- 使用context标签，引入外部文件，外部配置 -->
+	<context:property-placeholder
+		location="classpath:jdbc.properties" />
+
+	<bean id="dataSource"
+		class="com.alibaba.druid.pool.DruidDataSource">
+		<!-- 获取properties文件中内容，根据key获取，使用spring表达式"${}"获取值，进行数据库链接配置 -->
+		<!-- 驱动名称 com.mysql.jdbc.Driver -->
+		<property name="driverClassName" value="${prop.driverClass}"></property>
+		<!-- 地址 jdbc:mysql://localhost:3306/user -->
+		<property name="url" value="${prop.url}"></property>
+		<!-- 链接数据库用户名 -->
+		<property name="username" value="${prop.username}"></property>
+		<!-- 链接数据库用户密码 -->
+		<property name="password" value="${prop.password}"></property>
+
+	</bean>
+
+</beans>
